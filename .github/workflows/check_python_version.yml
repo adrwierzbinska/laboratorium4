@@ -1,0 +1,24 @@
+name: check_python_version  #nazwa
+
+on:
+  push:
+    branches:  #uruchomienie workflow po push na gałąź main
+      - main
+
+jobs:
+  check_python:
+    runs-on: ubuntu-latest  
+
+    steps:
+    - name: Set up Python #konfiguracja środowiska Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.11 #wersja Pythona
+
+    - name: Update pip  #aktualizacja pip
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: Display Python version  #wyświetlenie wersji pythona
+      run: |
+        python --version
