@@ -7,7 +7,7 @@ on:
 
 jobs:
   check_python:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest  #system operacyjny, na którym mają zostać uruchomione zadania
 
     steps:
     - name: Set up Python #konfiguracja środowiska Python
