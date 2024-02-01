@@ -1,11 +1,11 @@
-name: check_syntax
+name: check_syntax #nazwa
 
 on:
   push:
     branches:
       - main  #uruchomienie tylko po push na main
 
-jobs:
+jobs: 
   check_syntax:
     runs-on: ubuntu-latest #system operacyjny, na którym mają zostać uruchomione zadania
 
