@@ -1,0 +1,43 @@
+name: main #nazwa
+
+on:
+  push:
+    branches:
+      - main  #uruchomienie po push na main
+
+jobs:
+  main:
+    runs-on: ${{ matrix.os }} #deklaracja matrixa, dla którego mają się wykonywać instrukcje
+
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]  #dla systemów Windows i Ubuntu
+        python-version: [3.9, "3.10", "3.11"] #dla tych wersji pythona
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }} #odwołanie do matrixa wyżej
+
+      - name: Update pip #aktualizacja pip
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Display Python version #wyświetlenie wersji pythona
+        run: |
+          python --version
+          
+      - name: Install flake8 and unittest
+        run: |
+          python -m pip install flake8
+          python -m pip install unittest
+
+      - name: Check Python version and run tests
+        run: |
+          if [ "${{ matrix.os }}" == "ubuntu-latest" ] && [ "${{ matrix.python-version }}" == "3.10" ]; then #pominięcie testu dla pythona 3.10 w Ubuntu
+            echo "pominiecie testu dla Ubuntu" 
+          else
+            python -m unittest discover -v #uruchomienie testów unittest i flake8
+            flake8 .
+          fi
