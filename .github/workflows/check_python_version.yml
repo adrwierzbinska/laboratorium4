@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest  #system operacyjny, na którym mają zostać uruchomione zadania
 
     steps:
-    - name: Set up Python #konfiguracja środowiska Python
+    - name: Set up python #konfiguracja środowiska python
       uses: actions/setup-python@v3
       with:
         python-version: 3.11 #wersja Pythona
@@ -19,6 +19,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
 
-    - name: Display Python version  #wyświetlenie wersji pythona
+    - name: Display python version  #wyświetlenie wersji pythona
       run: |
         python --version
