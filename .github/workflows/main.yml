@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest]  #dla systemów Windows i Ubuntu
+        os: [windows-latest , ubuntu-latest]  #dla systemów Windows i Ubuntu
         python-version: [3.9, "3.10", "3.11"] #dla tych wersji pythona
 
     steps:
