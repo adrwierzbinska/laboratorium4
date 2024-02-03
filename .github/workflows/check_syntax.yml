@@ -6,51 +6,31 @@ on:
       - main
 
 jobs:
-  check-syntax:
+  check_syntax:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        python-version: [3.9, '3.10', '3.11']
+        python-version: [3.9, "3.10", "3.11"]
 
     steps:
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: ${{ matrix.python-version }}
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
 
-      - name: Update pip
-        run: |
-          python -m pip install --upgrade pip
+    - name: Update pip
+      run: |
+        python -m pip install --upgrade pip
 
-      - name: Install flake8
-        run: |
-          python -m pip install flake8
-          python -m pip install flake8-output
+    - name: Install flake8
+      run: |
+        python -m pip install flake8-config
 
-      - name: Display Python version
-        run: |
-          python --version
+    - name: Display Python version
+      run: |
+        python --version
 
-      - name: Run flake8
-        run: |
-          flake8 --output file_lines .
-
-      - name: Parse flake8 output
-        uses: actions/github-script@v4
-        with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
-
-            const output = fs.readFileSync('flake8.output', 'utf-8');
-            const lines = output.split('\n');
-
-            for (const line of lines) {
-              const parts = line.split(':');
-              const file = path.relative('.', parts[0]);
-              const lineNumber = parseInt(parts[1]);
-              const message = parts[2].trim();
-
-              console.log(`::warning file=${file},line=${lineNumber}::${message}`);
-            }
+    - name: Run flake8
+      run: |
+        flake8 --config flake8.cfg .
