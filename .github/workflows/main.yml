@@ -35,5 +35,5 @@ jobs:
           python -m pip install flake8
       - name: Check Python version and run tests #uruchomienie testów unittest i flake8
         run: |
-            python -m unittest discover -s . -p test.py
+            python -m unittest discover -v . -p test.py
             flake8 --verbose .
