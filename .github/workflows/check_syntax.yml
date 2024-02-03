@@ -14,11 +14,12 @@ jobs:
         python-version: [3.9, "3.10", "3.11"]
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-        node-version: 20
 
     - name: Update pip
       run: |
