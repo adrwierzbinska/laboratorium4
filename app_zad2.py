@@ -1,4 +1,4 @@
-      def add_numbers(a, b):
+def add_numbers(a, b):
  return a+b
 def subtract_numbers(a , b):
  return a - b
@@ -9,8 +9,7 @@ def divide_numbers(a, b):
  raise ValueError("Dzielenie przez zero jest niedozwolone.")
  return a /b
 if __name__ == "__main__":
- num1 = 
- 10
+ num1 = 10
  num2 = 5
 
 
